@@ -1,7 +1,7 @@
-// Forja MongoDB — document store initialization
+// launch.run MongoDB — document store initialization
 // Used for: vertical configs, dynamic attributes, CMS, A/B test configs
 
-db = db.getSiblingDB('forja');
+db = db.getSiblingDB('launch.run');
 
 // Collections
 db.createCollection('vertical_configs');
@@ -21,4 +21,4 @@ db.ab_test_configs.createIndex({ experiment_id: 1 }, { unique: true });
 db.feature_flags.createIndex({ flag_key: 1 }, { unique: true });
 db.knowledge_base.createIndex({ entity_type: 1, entity_id: 1 });
 
-print('MongoDB forja database initialized');
+print('MongoDB launch.run database initialized');

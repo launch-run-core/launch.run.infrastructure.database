@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS forja;
+CREATE DATABASE IF NOT EXISTS launch_run;
 
-CREATE TABLE IF NOT EXISTS forja.event (
+CREATE TABLE IF NOT EXISTS launch_run.event (
     event_id    UUID,
     app_id      LowCardinality(String),
     user_id     Nullable(UUID),

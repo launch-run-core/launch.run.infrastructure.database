@@ -1,4 +1,4 @@
-// Forja Neo4j — graph database initialization
+// launch.run Neo4j — graph database initialization
 // Used for: trust graph, fraud rings, recommendation graph, social connections
 
 // Constraints

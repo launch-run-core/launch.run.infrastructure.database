@@ -1,4 +1,4 @@
--- Forja TimescaleDB — timeseries database initialization
+-- launch.run TimescaleDB — timeseries database initialization
 -- Used for: price history, platform metrics, IoT (agri/solar), SLA tracking
 
 CREATE EXTENSION IF NOT EXISTS timescaledb;

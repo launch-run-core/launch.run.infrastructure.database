@@ -38,9 +38,9 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: forja
-      POSTGRES_PASSWORD: forja
-      POSTGRES_DB: forja
+      POSTGRES_USER: launch-run
+      POSTGRES_PASSWORD: launch-run
+      POSTGRES_DB: launch-run
     ports:
       - "5432:5432"
     volumes:
@@ -49,7 +49,7 @@ services:
     networks:
       - databases
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U forja -d forja"]
+      test: ["CMD-SHELL", "pg_isready -U launch-run -d launch-run"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -111,9 +111,9 @@ services:
   clickhouse:
     image: clickhouse/clickhouse-server:24
     environment:
-      CLICKHOUSE_DB: forja
-      CLICKHOUSE_USER: forja
-      CLICKHOUSE_PASSWORD: forja
+      CLICKHOUSE_DB: launch-run
+      CLICKHOUSE_USER: launch-run
+      CLICKHOUSE_PASSWORD: launch-run
     ports:
       - "8123:8123"
       - "9010:9000"
@@ -123,7 +123,7 @@ services:
     networks:
       - databases
     healthcheck:
-      test: ["CMD-SHELL", "clickhouse-client --user forja --password forja --query 'SELECT 1'"]
+      test: ["CMD-SHELL", "clickhouse-client --user launch-run --password launch-run --query 'SELECT 1'"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -134,9 +134,9 @@ services:
   mongodb:
     image: mongo:7
     environment:
-      MONGO_INITDB_ROOT_USERNAME: forja
-      MONGO_INITDB_ROOT_PASSWORD: forja
-      MONGO_INITDB_DATABASE: forja
+      MONGO_INITDB_ROOT_USERNAME: launch-run
+      MONGO_INITDB_ROOT_PASSWORD: launch-run
+      MONGO_INITDB_DATABASE: launch-run
     ports:
       - "27017:27017"
     volumes:
@@ -177,7 +177,7 @@ services:
   neo4j:
     image: neo4j:5-community
     environment:
-      NEO4J_AUTH: neo4j/forjaforja
+      NEO4J_AUTH: neo4j/launch-runlaunch-run
       NEO4J_PLUGINS: '["graph-data-science"]'
       NEO4J_dbms_memory_heap_initial__size: 512m
       NEO4J_dbms_memory_heap_max__size: 1g
@@ -218,9 +218,9 @@ services:
   timescaledb:
     image: timescale/timescaledb:latest-pg16
     environment:
-      POSTGRES_USER: forja
-      POSTGRES_PASSWORD: forja
-      POSTGRES_DB: forja_timeseries
+      POSTGRES_USER: launch-run
+      POSTGRES_PASSWORD: launch-run
+      POSTGRES_DB: launch_run_timeseries
     ports:
       - "5433:5432"
     volumes:
@@ -229,7 +229,7 @@ services:
     networks:
       - databases
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U forja -d forja_timeseries"]
+      test: ["CMD-SHELL", "pg_isready -U launch-run -d launch_run_timeseries"]
       interval: 5s
       timeout: 5s
       retries: 10

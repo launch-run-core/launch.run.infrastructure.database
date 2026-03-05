@@ -1,11 +1,11 @@
--- Forja ScyllaDB — wide-column store initialization
+-- launch.run ScyllaDB — wide-column store initialization
 -- Used for: activity feeds, notification history, real-time auction events
 
-CREATE KEYSPACE IF NOT EXISTS forja
+CREATE KEYSPACE IF NOT EXISTS launch-run
     WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1}
     AND durable_writes = true;
 
-USE forja;
+USE launch-run;
 
 -- Activity feed (reverse-chronological, partitioned by user)
 CREATE TABLE IF NOT EXISTS activity_feed (

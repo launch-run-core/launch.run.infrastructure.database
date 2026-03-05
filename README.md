@@ -41,24 +41,24 @@ docker compose ps
 ### Connect to PostgreSQL
 
 ```bash
-docker compose exec postgres psql -U forja -d forja
+docker compose exec postgres psql -U launch.run -d launch.run
 ```
 
 ### Connect to MongoDB
 
 ```bash
-docker compose exec mongodb mongosh -u forja -p forja --authenticationDatabase admin forja
+docker compose exec mongodb mongosh -u launch.run -p launch.run --authenticationDatabase admin launch.run
 ```
 
 ### Connect to ClickHouse
 
 ```bash
-docker compose exec clickhouse clickhouse-client --user forja --password forja
+docker compose exec clickhouse clickhouse-client --user launch.run --password launch.run
 ```
 
 ### Connect to Neo4j
 
-Open http://localhost:7474 in your browser. Credentials: `neo4j` / `forjaforja`
+Open http://localhost:7474 in your browser. Credentials: `neo4j` / `launch.runlaunch.run`
 
 ### Stop all databases
 
@@ -92,11 +92,11 @@ All databases use development credentials:
 
 | Database | User | Password |
 |----------|------|----------|
-| PostgreSQL | forja | forja |
-| ClickHouse | forja | forja |
-| MongoDB | forja | forja |
-| Neo4j | neo4j | forjaforja |
-| TimescaleDB | forja | forja |
+| PostgreSQL | launch-run | launch-run |
+| ClickHouse | launch-run | launch-run |
+| MongoDB | launch-run | launch-run |
+| Neo4j | neo4j | launch-runlaunch.run |
+| TimescaleDB | launch-run | launch-run |
 
 **WARNING**: These credentials are for local development only. Production credentials are managed via Kubernetes Secrets and Terraform.
 
@@ -106,7 +106,7 @@ All databases use development credentials:
 Creates isolated schemas for each microservice: `users`, `listings`, `transactions`, `reviews`, `notifications`, `intelligence`, `media`, `config`.
 
 ### ClickHouse
-Creates the `forja.event` table partitioned by month with 2-year TTL for analytics events.
+Creates the `launch.run.event` table partitioned by month with 2-year TTL for analytics events.
 
 ### MongoDB
 Initializes collections (`vertical_configs`, `micro_app_configs`, `dynamic_attributes`, `ab_test_configs`, `feature_flags`, `cms_content`, `agent_prompts`, `knowledge_base`) with indexes.
