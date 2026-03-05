@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  validate-compose:
+    name: Validate Docker Compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate docker-compose.yml
+        run: docker compose config --quiet
+
+  lint-sql:
+    name: Lint SQL Init Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SQL files exist and are non-empty
+        run: |
+          for f in init-scripts/postgres/init.sql \
+                   init-scripts/clickhouse/init.sql \
+                   init-scripts/timescaledb/init.sql; do
+            if [ ! -s "$f" ]; then
+              echo "ERROR: $f is missing or empty"
+              exit 1
+            fi
+            echo "OK: $f"
+          done
+
+      - name: Check MongoDB init script
+        run: |
+          if [ ! -s "init-scripts/mongodb/init.js" ]; then
+            echo "ERROR: init-scripts/mongodb/init.js is missing or empty"
+            exit 1
+          fi
+          echo "OK: init-scripts/mongodb/init.js"
+
+      - name: Check Neo4j init script
+        run: |
+          if [ ! -s "init-scripts/neo4j/init.cypher" ]; then
+            echo "ERROR: init-scripts/neo4j/init.cypher is missing or empty"
+            exit 1
+          fi
+          echo "OK: init-scripts/neo4j/init.cypher"
+
+      - name: Check ScyllaDB init script
+        run: |
+          if [ ! -s "init-scripts/scylladb/init.cql" ]; then
+            echo "ERROR: init-scripts/scylladb/init.cql is missing or empty"
+            exit 1
+          fi
+          echo "OK: init-scripts/scylladb/init.cql"
+
+  yamllint:
+    name: YAML Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install yamllint
+        run: pip install yamllint
+
+      - name: Lint YAML files
+        run: yamllint -d relaxed docker-compose.yml

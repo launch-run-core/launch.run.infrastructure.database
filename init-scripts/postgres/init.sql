@@ -1,0 +1,9 @@
+-- Create schemas for each service (schema isolation)
+CREATE SCHEMA IF NOT EXISTS users;
+CREATE SCHEMA IF NOT EXISTS listings;
+CREATE SCHEMA IF NOT EXISTS transactions;
+CREATE SCHEMA IF NOT EXISTS reviews;
+CREATE SCHEMA IF NOT EXISTS notifications;
+CREATE SCHEMA IF NOT EXISTS intelligence;
+CREATE SCHEMA IF NOT EXISTS media;
+CREATE SCHEMA IF NOT EXISTS config;
